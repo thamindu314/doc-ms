@@ -33,6 +33,11 @@ public class DoctorController {
         return doctorService.getAllDoctors();
     }
 
+    @GetMapping(path = "/doctors", params = {"speciality"})
+    public List<Doctor> getAllDoctorsBySpeciality(@RequestParam String speciality){
+        return doctorService.getAllDoctorsBySpeciality(speciality);
+    }
+
     @DeleteMapping(path = "/doctors/{id}")
     public void deleteDoctor(@PathVariable int id){
         doctorService.deleteDoctor(id);
