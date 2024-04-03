@@ -23,7 +23,7 @@ public class Doctor_AvailabilityService {
         return doctor_availabilityRepository.save(doctor_availability);
     }
 
-    public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(int id, LocalDate date){
+    public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(int id, String date){
         return doctor_availabilityRepository.findDoctorAvailabilityByDocIdAndDate(id, date);
     }
 

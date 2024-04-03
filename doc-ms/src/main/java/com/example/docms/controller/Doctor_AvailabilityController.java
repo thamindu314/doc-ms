@@ -6,6 +6,7 @@ import com.example.docms.service.Doctor_AvailabilityService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -29,8 +30,14 @@ public class Doctor_AvailabilityController {
 
     @GetMapping(path = "/doctor_availabilities", params = {"id","available_date"})
     public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(@RequestParam int id,@RequestParam String available_date){
+        // Get date
         LocalDate localDate = LocalDate.parse(available_date);
-        return doctor_availabilityService.getDocAvailabilityByDocIdAndDate(id, localDate);
+
+        // Format date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = localDate.format(formatter);
+
+        return doctor_availabilityService.getDocAvailabilityByDocIdAndDate(id, formattedDate);
     }
 
     @DeleteMapping(path = "/doctor_availabilities/{id}")
