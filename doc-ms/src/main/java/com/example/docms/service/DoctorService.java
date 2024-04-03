@@ -2,7 +2,7 @@ package com.example.docms.service;
 
 import com.example.docms.data.Doctor;
 import com.example.docms.data.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,19 +11,19 @@ import java.util.Optional;
 @Service
 public class DoctorService {
 
-    @Autowired
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
+
+    public DoctorService(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
 
     public Doctor createDoctor(Doctor doctor){
         return doctorRepository.save(doctor);
     }
 
-    public Doctor getDoctorByID(int id){
+    public Doctor getDoctorById(int id){
         Optional<Doctor> doctor= doctorRepository.findById(id);
-        if(doctor.isPresent()){
-            return doctor.get();
-        }
-        return null;
+        return doctor.orElse(null);
     }
 
     public Doctor updateDoctor(Doctor doctor){
@@ -38,7 +38,7 @@ public class DoctorService {
         return doctorRepository.findDoctorsByDocSpeciality(speciality);
     }
 
-    public void deleteDoctor(int id){
+    public void deleteDoctorById(int id){
         doctorRepository.deleteById(id);
     }
 }

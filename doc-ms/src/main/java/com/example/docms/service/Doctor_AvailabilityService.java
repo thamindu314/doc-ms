@@ -23,11 +23,11 @@ public class Doctor_AvailabilityService {
         return doctor_availabilityRepository.save(doctor_availability);
     }
 
-    public List<Doctor_Availability> getDocAvailabilityByDocIDAndDate(int id, LocalDate date){
-        return doctor_availabilityRepository.findDoctorAvailabilityByDocIDAndDate(id, date);
+    public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(int id, LocalDate date){
+        return doctor_availabilityRepository.findDoctorAvailabilityByDocIdAndDate(id, date);
     }
 
-    public void deleteDocAvailability(int id){
+    public void deleteDocAvailabilityById(int id){
         doctor_availabilityRepository.deleteById(id);
     }
 }

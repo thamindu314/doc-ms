@@ -2,7 +2,7 @@ package com.example.docms.controller;
 
 import com.example.docms.data.Doctor;
 import com.example.docms.service.DoctorService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,8 +10,11 @@ import java.util.List;
 @RestController
 public class DoctorController {
 
-    @Autowired
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
+
+    public DoctorController(DoctorService doctorService) {
+        this.doctorService = doctorService;
+    }
 
     @PostMapping(path = "/doctors")
     public Doctor createDoctor(@RequestBody Doctor doctor){
@@ -19,8 +22,8 @@ public class DoctorController {
     }
 
     @GetMapping(path = "/doctors/{id}")
-    public Doctor getDoctorByID(@PathVariable int id){
-        return doctorService.getDoctorByID(id);
+    public Doctor getDoctorById(@PathVariable int id){
+        return doctorService.getDoctorById(id);
     }
 
     @PutMapping(path = "/doctors")
@@ -39,7 +42,7 @@ public class DoctorController {
     }
 
     @DeleteMapping(path = "/doctors/{id}")
-    public void deleteDoctor(@PathVariable int id){
-        doctorService.deleteDoctor(id);
+    public void deleteDoctorById(@PathVariable int id){
+        doctorService.deleteDoctorById(id);
     }
 }

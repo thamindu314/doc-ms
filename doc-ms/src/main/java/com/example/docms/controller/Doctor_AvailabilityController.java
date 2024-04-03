@@ -2,7 +2,7 @@ package com.example.docms.controller;
 
 import com.example.docms.data.Doctor_Availability;
 import com.example.docms.service.Doctor_AvailabilityService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -11,8 +11,11 @@ import java.util.List;
 @RestController
 public class Doctor_AvailabilityController {
 
-    @Autowired
-    private Doctor_AvailabilityService doctor_availabilityService;
+    private final Doctor_AvailabilityService doctor_availabilityService;
+
+    public Doctor_AvailabilityController(Doctor_AvailabilityService doctor_availabilityService) {
+        this.doctor_availabilityService = doctor_availabilityService;
+    }
 
     @PostMapping(path = "/doctor_availabilities")
     public Doctor_Availability createDocAvailability(@RequestBody Doctor_Availability doctor_availability){
@@ -25,13 +28,13 @@ public class Doctor_AvailabilityController {
     }
 
     @GetMapping(path = "/doctor_availabilities", params = {"id","available_date"})
-    public List<Doctor_Availability> getDocAvailabilityByDocIDAndDate(@RequestParam int id,@RequestParam String available_date){
+    public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(@RequestParam int id,@RequestParam String available_date){
         LocalDate localDate = LocalDate.parse(available_date);
-        return doctor_availabilityService.getDocAvailabilityByDocIDAndDate(id, localDate);
+        return doctor_availabilityService.getDocAvailabilityByDocIdAndDate(id, localDate);
     }
 
     @DeleteMapping(path = "/doctor_availabilities/{id}")
-    public void deleteDocAvailability(@PathVariable int id){
-        doctor_availabilityService.deleteDocAvailability(id);
+    public void deleteDocAvailabilityById(@PathVariable int id){
+        doctor_availabilityService.deleteDocAvailabilityById(id);
     }
 }
