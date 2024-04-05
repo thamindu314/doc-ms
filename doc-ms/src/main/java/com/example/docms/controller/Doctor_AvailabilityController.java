@@ -30,14 +30,10 @@ public class Doctor_AvailabilityController {
 
     @GetMapping(path = "/doctor_availabilities", params = {"id","available_date"})
     public List<Doctor_Availability> getDocAvailabilityByDocIdAndDate(@RequestParam int id,@RequestParam String available_date){
-        // Get date
+        // Get date and convert it to LocalDate
         LocalDate localDate = LocalDate.parse(available_date);
 
-        // Format date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedDate = localDate.format(formatter);
-
-        return doctor_availabilityService.getDocAvailabilityByDocIdAndDate(id, formattedDate);
+        return doctor_availabilityService.getDocAvailabilityByDocIdAndDate(id, localDate);
     }
 
     @DeleteMapping(path = "/doctor_availabilities/{id}")
