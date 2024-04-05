@@ -6,7 +6,6 @@ import com.example.docms.service.Doctor_AvailabilityService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
