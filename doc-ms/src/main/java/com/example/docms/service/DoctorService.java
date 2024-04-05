@@ -21,17 +21,21 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    public Doctor getDoctorById(int id){
-        Optional<Doctor> doctor= doctorRepository.findById(id);
-        return doctor.orElse(null);
-    }
-
     public Doctor updateDoctor(Doctor doctor){
         return doctorRepository.save(doctor);
     }
 
     public List<Doctor> getAllDoctors(){
         return doctorRepository.findAll();
+    }
+
+    public Doctor getDoctorById(int id){
+        Optional<Doctor> doctor= doctorRepository.findById(id);
+        return doctor.orElse(null);
+    }
+
+    public Doctor getDoctorByName(String doc_name){
+        return doctorRepository.findDoctorByDocName(doc_name);
     }
 
     public List<Doctor> getAllDoctorsBySpeciality(String speciality){
@@ -41,4 +45,5 @@ public class DoctorService {
     public void deleteDoctorById(int id){
         doctorRepository.deleteById(id);
     }
+
 }

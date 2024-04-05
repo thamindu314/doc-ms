@@ -36,6 +36,11 @@ public class DoctorController {
         return doctorService.getAllDoctors();
     }
 
+    @GetMapping(path = "/doctors", params = {"doc_name"})
+    public Doctor getDoctorByName(@RequestParam String doc_name){
+        return doctorService.getDoctorByName(doc_name);
+    }
+
     @GetMapping(path = "/doctors", params = {"speciality"})
     public List<Doctor> getAllDoctorsBySpeciality(@RequestParam String speciality){
         return doctorService.getAllDoctorsBySpeciality(speciality);

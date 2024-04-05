@@ -10,4 +10,8 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
     @Query("SELECT d FROM Doctor d WHERE d.speciality=?1")
     List<Doctor> findDoctorsByDocSpeciality(String speciality);
+
+    @Query("SELECT d FROM Doctor d WHERE d.doc_name=?1")
+    Doctor findDoctorByDocName(String doc_name);
+
 }
